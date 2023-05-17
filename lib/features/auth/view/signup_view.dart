@@ -1,23 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_clone/common/rounded_small_button.dart';
-import 'package:flutter_twitter_clone/constants/ui_constants.dart';
-import 'package:flutter_twitter_clone/features/auth/view/signup_view.dart';
-import 'package:flutter_twitter_clone/theme/theme.dart';
+import 'package:flutter_twitter_clone/common/common.dart';
+import 'package:flutter_twitter_clone/features/auth/widgets/auth_field.dart';
+import 'package:flutter_twitter_clone/theme/pallete.dart';
+import '../../../constants/constants.dart';
+import 'login_view.dart';
 
-import '../widgets/auth_field.dart';
-
-class LoginView extends StatefulWidget {
+class SignUpView extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const LoginView(),
+        builder: (context) => const SignUpView(),
       );
-  const LoginView({super.key});
+
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   final appBar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -39,7 +39,6 @@ class _LoginViewState extends State<LoginView> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                //text field 1
                 AuthField(controller: emailController, hintText: 'Email address'),
                 const SizedBox(height: 25),
                 AuthField(controller: passwordController, hintText: 'Password'),
@@ -54,17 +53,17 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 25),
                 RichText(
                   text: TextSpan(
-                    text: "Don't have an account?",
+                    text: "Already have an account?",
                     style: const TextStyle(fontSize: 16),
                     children: [
                       TextSpan(
-                        text: " Sign up",
+                        text: " Login",
                         style: const TextStyle(color: Pallete.blueColor, fontSize: 16),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(
                               context,
-                              SignUpView.route(),
+                              LoginView.route(),
                             );
                           },
                       ),
